@@ -45,7 +45,7 @@ jobs:
 
       - name: Test
         run: |
-          docker run -d -p 80:80 alperen0702/student-app:latest
+          docker run -d -p 80:5000 alperen0702/student-app:latest
           sleep 10s
           curl http://localhost
           docker ps -aq | xargs docker stop | xargs docker rm
