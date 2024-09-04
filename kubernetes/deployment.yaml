@@ -21,7 +21,7 @@ spec:
         image: alperen0702/student-app:latest
         imagePullPolicy: Always
         ports:
-          - containerPort: 5000
+          - containerPort: 30000
       imagePullSecrets:
         - name: regcred
          
