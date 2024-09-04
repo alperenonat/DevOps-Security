@@ -27,7 +27,7 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: |
-            alperen0701/student-app:latest
+            alperen0702/student-app:latest
   test:
     name: Test
     needs: [ scan ]
