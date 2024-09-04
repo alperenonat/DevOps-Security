@@ -52,7 +52,7 @@ jobs:
 
   deploy:
     name: Deploy
-    needs: [ test ]  # Correcte afhankelijkheid zonder cirkels
+    needs: [ test ]  
     runs-on: self-hosted
     steps:
       - name: Checkout source code
