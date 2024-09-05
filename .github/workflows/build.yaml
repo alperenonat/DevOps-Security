@@ -3,7 +3,7 @@ name: CI/CD
 on: push
 
 jobs:
-
+  
   build:
     name: Build
     runs-on: ubuntu-latest
@@ -19,7 +19,7 @@ jobs:
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
-
+      
       - name: Build and push the Docker image
         uses: docker/build-push-action@v5
         with:
@@ -28,10 +28,8 @@ jobs:
           push: true
           tags: |
             alperen0702/student-app:latest
-
   test:
     name: Test
-    needs: [ build ]  # Afhankelijkheid aangepast naar 'build'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the repository
@@ -42,8 +40,7 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_LOGIN }}
           password: ${{ secrets.DOCKER_HUB_PASSWORD }}
-
-      - name: Test
+      - name: test 
         run: |
           docker run -d -p 80:5000 alperen0702/student-app:latest
           sleep 10s
@@ -52,12 +49,12 @@ jobs:
 
   deploy:
     name: Deploy
-    needs: [ test ]  
+    needs: [ test ]
     runs-on: self-hosted
     steps:
       - name: Checkout source code
         uses: actions/checkout@v4
       - run: |
-          sudo kubectl delete deployment --all              
-          sudo kubectl apply -f ${{ github.workspace }}/kubernetes/deployment.yaml --force
-          sudo kubectl apply -f ${{ github.workspace }}/kubernetes/nginx-service.yaml --force
+              sudo kubectl delete deployment --all              
+              sudo kubectl apply -f ${{ github.workspace }}/kubernetes/deployment.yaml --force
+              sudo kubectl apply -f ${{ github.workspace }}/kubernetes/nginx-service.yaml --force
