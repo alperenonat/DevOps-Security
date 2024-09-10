@@ -1,7 +1,8 @@
-from flask import Flask, request, redirect, make_response
+from flask import Flask, request, redirect, make_response, escape
 import sqlite3
 import urllib
 import quoter_templates as templates
+
 
 # Run using `poetry install && poetry run flask run --reload`
 app = Flask(__name__)
@@ -33,13 +34,14 @@ def check_authentication():
 @app.route("/")
 def index():
     quotes = db.execute("select id, text, attribution from quotes order by id").fetchall()
-    return templates.main_page(quotes, request.user_id, request.args.get('error'))
+    error_message = escape(request.args.get('error', ''))
+    return templates.main_page(quotes, request.user_id, error_message)
 
 
 # The quote comments page
 @app.route("/quotes/<int:quote_id>")
 def get_comments_page(quote_id):
-    quote = cur.execute("select id, text, attribution from quotes where id={quote_id}").fetchone()
+    quote = db.execute(f"select id, text, attribution from quotes where id={quote_id}").fetchone()
     comments = db.execute(f"select text, datetime(time,'localtime') as time, name as user_name from comments c left join users u on u.id=c.user_id where quote_id={quote_id} order by c.id").fetchall()
     return templates.comments_page(quote, comments, request.user_id)
 
@@ -78,7 +80,7 @@ def signin():
             user_id = cursor.lastrowid
     
     response = make_response(redirect('/'))
-    response.set_cookie('user_id', str(user_id))
+    response.set_cookie('user_id', str(user_id), secure=True, httponly=True, samesite='Lax')
     return response
 
 
