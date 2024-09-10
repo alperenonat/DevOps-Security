@@ -39,7 +39,7 @@ def index():
 # The quote comments page
 @app.route("/quotes/<int:quote_id>")
 def get_comments_page(quote_id):
-    quote = db.execute(f"select id, text, attribution from quotes where id={quote_id}").fetchone()
+    quote = cur.execute("select id, text, attribution from quotes where id={quote_id}").fetchone()
     comments = db.execute(f"select text, datetime(time,'localtime') as time, name as user_name from comments c left join users u on u.id=c.user_id where quote_id={quote_id} order by c.id").fetchall()
     return templates.comments_page(quote, comments, request.user_id)
 
