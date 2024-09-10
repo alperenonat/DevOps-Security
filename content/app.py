@@ -33,7 +33,7 @@ def check_authentication():
 @app.route("/")
 def index():
     quotes = db.execute("select id, text, attribution from quotes order by id").fetchall()
-    return response(request.args.get('error')), mimetype='text/plain')
+    return response(request.args.get('error')), mimetype='text/plain'
 
 
 # The quote comments page
