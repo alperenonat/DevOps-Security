@@ -1,4 +1,4 @@
-from flask import Flask, request, redirect, make_response, response
+from flask import Flask, request, redirect, make_response
 import sqlite3
 import urllib
 import quoter_templates as templates
@@ -33,7 +33,7 @@ def check_authentication():
 @app.route("/")
 def index():
     quotes = db.execute("select id, text, attribution from quotes order by id").fetchall()
-    return response(request.args.get('error')), mimetype='text/plain'
+    return templates.main_page(quotes, request.user_id, request.args.get('error'))
 
 
 # The quote comments page
