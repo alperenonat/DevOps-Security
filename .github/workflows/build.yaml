@@ -56,7 +56,7 @@ jobs:
 
   test:
     name: Test
-    needs: [ build ]
+    needs: [ scan ]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the repository
@@ -76,7 +76,7 @@ jobs:
 
   deploy:
     name: Deploy
-    needs: [ deploy ]
+    needs: [ test ]
     runs-on: self-hosted
     steps:
       - name: Checkout source code
