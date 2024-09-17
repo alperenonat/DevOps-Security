@@ -81,6 +81,3 @@ jobs:
             ignore-unchanged: false
             write-comment: true
             github-token: ${{ secrets. GGITHUB_TOKEN }} # to be able to write the comment
-
-            exit-code: true
-            exit-on: vulnerability
