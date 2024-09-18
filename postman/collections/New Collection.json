@@ -1,0 +1,170 @@
+{
+	"info": {
+		"_postman_id": "8e0899d5-617d-473a-a2c7-36dafc06b89c",
+		"name": "New Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_uid": "38426607-8e0899d5-617d-473a-a2c7-36dafc06b89c"
+	},
+	"item": [
+		{
+			"name": "DevSecOps-test-week3",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b04c2cc5-5e70-4b20-9174-7f74b50dbb45",
+						"exec": [
+							"pm.test(\"Response status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"  pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response has the required fields\", function () {\r",
+							"  const responseData = pm.response.text();\r",
+							"\r",
+							"  pm.expect(responseData).to.include('<title>Quoter XP</title');\r",
+							"  pm.expect(responseData).to.include('<link rel=\"stylesheet\" type=\"text/css\" href=\"/static/style.css\">');\r",
+							"  pm.expect(responseData).to.include('class=\"quote img1\"');\r",
+							"  pm.expect(responseData).to.include('class=\"quote img2\"');\r",
+							"  pm.expect(responseData).to.include('class=\"quote img3\"');\r",
+							"  pm.expect(responseData).to.include('class=\"quote img4\"');\r",
+							"  pm.expect(responseData).to.include('class=\"quote img5\"');\r",
+							"  pm.expect(responseData).to.include('class=\"quote img6\"');\r",
+							"  pm.expect(responseData).to.include('class=\"quote img7\"');\r",
+							"  pm.expect(responseData).to.include('class=\"quote img8\"');\r",
+							"  pm.expect(responseData).to.include('class=\"quote img9\"');\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Quote and attribution must be non-empty strings\", function () {\r",
+							"    const responseData = pm.response.text();\r",
+							"    const quoteRegex = /<q>(.*?)<\\/q>/g;\r",
+							"    const addressRegex = /<address>(.*?)<\\/address>/g;\r",
+							"    let quoteMatches = [];\r",
+							"    let attributionMatches = [];\r",
+							"    \r",
+							"    let match;\r",
+							"    while (match = quoteRegex.exec(responseData)) {\r",
+							"        quoteMatches.push(match[1]);\r",
+							"    }\r",
+							"    while (match = addressRegex.exec(responseData)) {\r",
+							"        attributionMatches.push(match[1]);\r",
+							"    }\r",
+							"    \r",
+							"    quoteMatches.forEach(function (quote) {\r",
+							"        pm.expect(quote).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Quote should not be empty\");\r",
+							"    });\r",
+							"    attributionMatches.forEach(function (attribution) {\r",
+							"        pm.expect(attribution).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Attribution should not be empty\");\r",
+							"    });\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Username and password must be non-empty strings\", function () {\r",
+							"    const responseData = pm.response.text();\r",
+							"    \r",
+							"    pm.expect(responseData).to.include('name=\"username\"').and.to.include('name=\"password\"');\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"id": "53e61cea-1acd-4b47-b255-bfe803a2194c",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true,
+				"followAuthorizationHeader": true
+			},
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "in",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "value",
+							"value": "DevOpsSec-API-week3-key",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "DevOpsSec-API-week3-key",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://50.19.191.220:30000/",
+					"protocol": "http",
+					"host": [
+						"50",
+						"19",
+						"191",
+						"220"
+					],
+					"port": "30000",
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "in",
+				"value": "header",
+				"type": "string"
+			},
+			{
+				"key": "value",
+				"value": "DevOpsSec-API-week3-key",
+				"type": "string"
+			},
+			{
+				"key": "key",
+				"value": "DevOpsSec-API-week3-key",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "d9a604d9-8493-47ff-a8eb-e192f6738d44",
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "206eb554-1cfe-474e-a1b6-6a6acc17dc0d",
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
