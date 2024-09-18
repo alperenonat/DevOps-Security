@@ -99,6 +99,6 @@ jobs:
         run: postman login --with-api-key ${{ secrets.POSTMAN_API_KEY }}
       - name: Run API tests
         run: |
-          postman collection run "${{ github.workspace }}/postman/collections/DevSecOps-test-week3" --integration-id "168737-${{ github.run_id }}"
+          postman collection run "${{ github.workspace }}/postman/collections/New Collection.json" --integration-id "168737-${{ github.run_id }}"
 
 
