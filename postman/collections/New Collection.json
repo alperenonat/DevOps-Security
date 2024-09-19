@@ -87,13 +87,13 @@
 					"type": "apikey",
 					"apikey": [
 						{
-							"key": "in",
-							"value": "header",
+							"key": "value",
+							"value": "DevOpsSec-API-week3-key",
 							"type": "string"
 						},
 						{
-							"key": "value",
-							"value": "DevOpsSec-API-week3-key",
+							"key": "in",
+							"value": "header",
 							"type": "string"
 						},
 						{
