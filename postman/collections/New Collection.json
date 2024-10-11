@@ -56,12 +56,12 @@
 					"type": "apikey",
 					"apikey": [
 						{
-							"key": "value",
+							"key": "key",
 							"value": "DevOpsSec-API-week3-key",
 							"type": "string"
 						},
 						{
-							"key": "key",
+							"key": "value",
 							"value": "DevOpsSec-API-week3-key",
 							"type": "string"
 						},
@@ -75,13 +75,13 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://100.24.67.60:30000/",
+					"raw": "http://23.21.235.243:30000/",
 					"protocol": "http",
 					"host": [
-						"100",
-						"24",
-						"67",
-						"60"
+						"23",
+						"21",
+						"235",
+						"243"
 					],
 					"port": "30000",
 					"path": [
