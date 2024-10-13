@@ -60,7 +60,7 @@ def page(content,user_id,title,error=None):
 """
     else:
         links = f"""
-<label class="link" for="signinCheckbox">Inloggen week 3 Alperen!!!</label>
+<label class="link" for="signinCheckbox">Inloggen week 3 Alperen!!!!</label>
 """
 
     return f"""<!DOCTYPE html>
